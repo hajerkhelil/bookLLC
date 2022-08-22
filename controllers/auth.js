@@ -14,7 +14,7 @@ exports.Register= async(req,res)=> {
         if (found)
         { return  res.status(400).send({  errors:[{msg:"user already exists" }]})}
 
-        const salt=10
+        const salt=await bcrypt.genSalt(10);
         const hashedpassword = await bcrypt.hash(password, salt)
         user.password= hashedpassword
 
@@ -30,12 +30,18 @@ exports.Register= async(req,res)=> {
     }
 }
 
-
+// only users that are not banned can login 
 exports.Login= async (req,res)=>{
 
     const {email,password}= req.body
     try {
         const user= await UserSchema.findOne({email})
+
+         console.log('user.banned', user.banned);  
+        if (user.banned == "true")  
+         console.log('user.banned 2', user.banned);   
+        {return  res.status(400).send({errors: [{msg: 'user banned'}]})}
+        
         if (!user)
         {return  res.status(400).send({errors: [{msg: 'bad credentials'}]})}
 
@@ -47,12 +53,15 @@ exports.Login= async (req,res)=>{
         const token=jwt.sign(payload, process.env.SecretOrKey)
         res.status(200).send({msg:'login successfully', user, token })
     } catch (error) {
-        res.status(500).send({errors: [{msg:"could not login"}]})
+        // res.status(500).send({errors: [{msg:"could not login"}]})
+        res.status(res.statusCode).json({
+            error: true,
+            message: error.message,
+        })
     }
 }
 
 // all users
-
 exports.AllUsers= async (req,res) => {
 
     try {
@@ -79,15 +88,7 @@ exports.DeleteUser= async (req,res) => {
 }
 
 
-exports.UpdateUser = async (req,res) => {
-const {id}= req.params
-try {
-    const updated= await UserSchema.findByIdAndUpdate(id,{$set: {...req.body}})
-    res.status(200).send({msg:"user updated" , updated})
-} catch (error) {
-    res.status(500).send("could not update user")
-}
-}
+
 
 
 exports.updatePassword = async (req, res) => {
@@ -105,7 +106,6 @@ exports.updatePassword = async (req, res) => {
                 console.log("data.name",data.name);
                 res.status(res.statusCode).json({
                     message: data.name + " password was  updated"
-                    
                 })
             }).catch(error => {
                 res.status(res.statusCode).json({
@@ -115,24 +115,42 @@ exports.updatePassword = async (req, res) => {
             })
         }
     } catch (error) {
-        res.status(res.statusCode).json({
-            error: true,
-            message: error.message,
-        });
+        res.status(500).send("password was not updated")
     }
 }
 
 
+exports.UpdateUser = async (req,res) => {
+    const {id}= req.params
+    try {
+        const updated= await UserSchema.findByIdAndUpdate(id,{$set: {...req.body}})
+        res.status(200).send({msg:"user updated" , updated})
+    } catch (error) {
+        res.status(500).send("could not update user")
+    }
+    }
+    
+
+//  admin block user : user id = req.params 
+//  disable a user : soft delete 
+// admin ban 
+
+exports.BanUser = async (req, res) => {
+    const {id}= req.params
+    try {
+    // console.log("1",req.user.role); 
+    if ( req.user.role == "user")
+    //  console.log("2",req.user.role);
+    {return res.status(res.statusCode).send('you can not ban a user')}
+        const banned= await UserSchema.findByIdAndUpdate(id,{$set: {...req.body}})
+        res.status(200).send({msg:"user banned" , banned})
+    } catch (error) {
+        // res.status(500).send("could not ban a user")
+        res.status(res.statusCode).json({
+            error: true,
+            message: error.message,
+        })
+    }
+}
 
 
-
-// exports.BanUser = async (req,res) => {
-//     const {id} = req.body
-//     console.log(req.body.id);
-//   UserSchema.statics.getBlocked = function (id) {
-//     console.log(id);
-//     return this.findById(id)
-//       .select('block.user ')
-//       .exec();
-//   };  
-// }

@@ -6,6 +6,8 @@ const UserSchema= new mongoose.Schema({
     email: {type: String, required:true, unique:true},
     password: {type: String, required: true},
 
+    banned:{type: Boolean, enum:['false', 'true'], default:'false'},
+
     role: {type: String, enum:['user', 'admin'], default:'user'},
 })
 

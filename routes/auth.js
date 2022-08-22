@@ -24,8 +24,7 @@ AuthRoute.put('/updateUser/:id', isAuth,  UpdateUser)
 
 AuthRoute.get('/UpdatePassword/:token',  updatePassword)
 
-// AuthRoute.get('/BanUser',  BanUser)
-
+AuthRoute.get('/BanUser/:id',isAuth,  BanUser)
 
 
 module.exports = AuthRoute;

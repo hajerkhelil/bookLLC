@@ -49,8 +49,9 @@ exports.OneBook= async(req,res) => {
 exports.DeleteBook= async(req,res) =>{
     const {id}= req.params
     try {
-
+        console.log("1",req.user.role); // admin 
         if (!req.user.role=="admin")
+        console.log("2",req.user.role);  // 
         {return res.send('can not delete a book' )}
 
            const  deleted= await  BookSchema.findByIdAndDelete(id)
