@@ -30,17 +30,15 @@ exports.Register= async(req,res)=> {
     }
 }
 
-// only users that are not banned can login 
+// only users that are not banned can login : banned==false
 exports.Login= async (req,res)=>{
 
     const {email,password}= req.body
     try {
         const user= await UserSchema.findOne({email})
 
-         console.log('user.banned', user.banned);  
-        if (user.banned == "true")  
-         console.log('user.banned 2', user.banned);   
-        {return  res.status(400).send({errors: [{msg: 'user banned'}]})}
+        if (user.banned == true)  
+        {return  res.status(400).send({msg: 'user banned'})}
         
         if (!user)
         {return  res.status(400).send({errors: [{msg: 'bad credentials'}]})}
@@ -131,17 +129,14 @@ exports.UpdateUser = async (req,res) => {
     }
     
 
-//  admin block user : user id = req.params 
-//  disable a user : soft delete 
-// admin ban 
 
+// admin ban user 
 exports.BanUser = async (req, res) => {
     const {id}= req.params
     try {
-    // console.log("1",req.user.role); 
     if ( req.user.role == "user")
-    //  console.log("2",req.user.role);
     {return res.status(res.statusCode).send('you can not ban a user')}
+
         const banned= await UserSchema.findByIdAndUpdate(id,{$set: {...req.body}})
         res.status(200).send({msg:"user banned" , banned})
     } catch (error) {
@@ -152,5 +147,6 @@ exports.BanUser = async (req, res) => {
         })
     }
 }
+
 
 

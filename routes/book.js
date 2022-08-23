@@ -9,7 +9,7 @@ BookRoute.get("/AllBooks", AllBooks)
 
 BookRoute.get("/OneBook/:id", OneBook)
 
-BookRoute.delete("/DeleteBook/:id",isAuth, DeleteBook)
+BookRoute.delete("/DeleteBook/:id",isAuth, DeleteBook) // admin 
 
 BookRoute.put("/UpdateBook/:id",isAuth, UpdateBook)
 

@@ -3,17 +3,12 @@ const BookSchema = require('../models/book')
 
 
 exports.AddBook=async(req,res)=>{
-   
 const {name,images,author,description,Genre,price}=req.body
-
 try {
-   
     const newbook = new BookSchema(req.body)
-    console.log(req.user)
-      
+    console.log(req.user)  
    await newbook.save()
     res.status(200).send({msg:'book registered successfully', newbook  })
-
 } catch (error) {
     res.status(500).send({errors: [{msg: "book could not register"},error]})
 }
@@ -49,9 +44,7 @@ exports.OneBook= async(req,res) => {
 exports.DeleteBook= async(req,res) =>{
     const {id}= req.params
     try {
-        console.log("1",req.user.role); // admin 
-        if (!req.user.role=="admin")
-        console.log("2",req.user.role);  // 
+        if (req.user.role == "user")
         {return res.send('can not delete a book' )}
 
            const  deleted= await  BookSchema.findByIdAndDelete(id)

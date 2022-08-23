@@ -13,5 +13,4 @@ const BookSchema= new mongoose.Schema({
 
 })
 
-// (esem el collection , schema li sna3neha )
 module.exports= mongoose.model('book', BookSchema)

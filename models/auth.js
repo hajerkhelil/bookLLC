@@ -5,10 +5,11 @@ const UserSchema= new mongoose.Schema({
     name: {type: String, required: true},
     email: {type: String, required:true, unique:true},
     password: {type: String, required: true},
-
     banned:{type: Boolean, enum:['false', 'true'], default:'false'},
-
     role: {type: String, enum:['user', 'admin'], default:'user'},
+
+    msgid: {types: mongoose.Schema.Types.ObjectId}, 
+
 })
 
 
