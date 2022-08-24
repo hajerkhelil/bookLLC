@@ -13,6 +13,6 @@ BookRoute.delete("/DeleteBook/:id",isAuth, DeleteBook) // admin
 
 BookRoute.put("/UpdateBook/:id",isAuth, UpdateBook)
 
-// BookRoute.get("/searchBook",searchBook)
+BookRoute.post("/searchBook",isAuth,searchBook)
 
 module.exports = BookRoute;

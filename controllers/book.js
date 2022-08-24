@@ -67,19 +67,18 @@ exports.DeleteBook= async(req,res) =>{
         }
     }
 
+    
+
+    exports.searchBook = async  (req,res)=>{
+        try {
+            const searched= await   BookSchema.find({ $and: [{ name: { $regex: '.*' + req.body.name + '.*' } }, { Genre: { $regex: '.*' + req.body.Genre + '.*' } }] })
+
+            res.status(200).send({msg:"book searched" , searched})
+        } catch (error) {
+            res.status(500).send("could not searche book")
+        }
+    }
 
 
-    // exports.searchBook = async (req,res) => {
-    //      const {name} = req.body
-    //      const bookname= BookSchema.name
-    //     try {
-    //         const found= await BookSchema.find({ bookname : name})
-    //         if (found)
-    //         res.status(200).send({msg:"book found" , found})
-    //     } catch (error) {
-    //         res.status(res.statusCode).json({
-    //             error: true,
-    //             message: error.message,
-    //         })
-    //     }
-    //   }
+
+ 
