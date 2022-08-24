@@ -1,5 +1,5 @@
 const express= require("express");
-const { AddBook, AllBooks, OneBook, DeleteBook, UpdateBook, test } = require("../controllers/book");
+const { AddBook, AllBooks, OneBook, DeleteBook, UpdateBook, test, searchBook } = require("../controllers/book");
 const { isAuth } = require("../middlewares/isAuth");
 const BookRoute= express.Router()
 
@@ -12,5 +12,7 @@ BookRoute.get("/OneBook/:id", OneBook)
 BookRoute.delete("/DeleteBook/:id",isAuth, DeleteBook) // admin 
 
 BookRoute.put("/UpdateBook/:id",isAuth, UpdateBook)
+
+// BookRoute.get("/searchBook",searchBook)
 
 module.exports = BookRoute;

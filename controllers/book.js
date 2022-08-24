@@ -28,15 +28,15 @@ exports.AllBooks= async(req,res) =>{
 
 
 exports.OneBook= async(req,res) => {
-
     const {id}= req.params
+        //      const bookname= BookSchema.name
+console.log(BookSchema.name);
+
     try {
         const foundbook= await  BookSchema.findById(id)
         res.status(200).send({msg:"Book found", foundbook})
-
     } catch (error) {
         res.status(500).send("could not get book")
-
     }
 }
 
@@ -69,3 +69,17 @@ exports.DeleteBook= async(req,res) =>{
 
 
 
+    // exports.searchBook = async (req,res) => {
+    //      const {name} = req.body
+    //      const bookname= BookSchema.name
+    //     try {
+    //         const found= await BookSchema.find({ bookname : name})
+    //         if (found)
+    //         res.status(200).send({msg:"book found" , found})
+    //     } catch (error) {
+    //         res.status(res.statusCode).json({
+    //             error: true,
+    //             message: error.message,
+    //         })
+    //     }
+    //   }

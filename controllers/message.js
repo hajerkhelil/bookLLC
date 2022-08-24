@@ -47,6 +47,13 @@ exports.getAllMsgs = async (req,res) => {
 }
 
 
-
+// exports.searchByemail = async (req,res) => {
+//  const {email} = req.body 
+//     try {
+//         const foundEmail = await 
+//     } catch (error) {
+        
+//     }
+// }
 
 
