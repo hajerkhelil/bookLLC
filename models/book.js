@@ -2,6 +2,8 @@ const  mongoose= require ('mongoose')
 
 const BookSchema= new mongoose.Schema({
 
+    // _id:mongoose.Schema.Types.ObjectId,
+
     name: {type: String, required:true},
     images: {type: String, required:true},
     author: {type: String, required: true},
@@ -9,7 +11,8 @@ const BookSchema= new mongoose.Schema({
     Genre:{type: String, required: true},
     price:{type: Number, required: true},
     qty:{type:Number, default:0},
-    userId: {types: mongoose.Schema.Types.ObjectId}, 
+
+    userId: { type: mongoose.Schema.Types.ObjectId}, 
 
 })
 

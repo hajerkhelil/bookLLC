@@ -3,10 +3,11 @@ const  mongoose= require ('mongoose')
 
 const MsgSchema= new mongoose.Schema({
 
-    sender: {types: mongoose.Schema.Types.ObjectId}, 
-    receiver: {types: mongoose.Schema.Types.ObjectId}, 
-    content: {type: String},
+    // _id:mongoose.Schema.Types.ObjectId,
 
+    sender:  { type: mongoose.Schema.Types.ObjectId},
+    receiver: { type: mongoose.Schema.Types.ObjectId}, 
+    content: {type: String},
 
 })
 
