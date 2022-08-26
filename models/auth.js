@@ -10,7 +10,7 @@ const UserSchema= new mongoose.Schema({
     banned:{type: Boolean, enum:['false', 'true'], default:'false'},
     role: {type: String, enum:['user', 'admin'], default:'user'},
 
-    msgId: { type: mongoose.Schema.Types.ObjectId}, 
+    msgId: { type: mongoose.Schema.Types.ObjectId, ref:'msg'}, 
     
 
 })

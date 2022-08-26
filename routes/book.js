@@ -1,11 +1,13 @@
 const express= require("express");
-const { AddBook, AllBooks, OneBook, DeleteBook, UpdateBook, test, searchBook } = require("../controllers/book");
+const { AddBook, AllBooks, OneBook, DeleteBook, UpdateBook, test, searchBook, BooksbyUser } = require("../controllers/book");
 const { isAuth } = require("../middlewares/isAuth");
 const BookRoute= express.Router()
 
 BookRoute.post("/AddBook",isAuth, AddBook)
 
 BookRoute.get("/AllBooks", AllBooks)
+
+BookRoute.get("/BooksbyUser",isAuth, BooksbyUser)
 
 BookRoute.get("/OneBook/:id", OneBook)
 

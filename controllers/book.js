@@ -4,22 +4,43 @@ const BookSchema = require('../models/book')
 
 exports.AddBook=async(req,res)=>{
 const {name,images,author,description,Genre,price}=req.body
+
 try {
-    const newbook = new BookSchema(req.body)
-    console.log(req.user)  
+    const newbook = new BookSchema(
+        {
+            name,images,author,description,Genre,price,
+            userId: req.user.id,
+        }
+    )
    await newbook.save()
     res.status(200).send({msg:'book registered successfully', newbook  })
 } catch (error) {
-    res.status(500).send({errors: [{msg: "book could not register"},error]})
+    // res.status(500).send({errors: [{msg: "book could not register"},error]})
+    res.status(res.statusCode).json({
+        error: true,
+        message: error.message,
+    })
 }
 }
 
 
 exports.AllBooks= async(req,res) =>{
     try {
- // const books= await BookSchema.find({userId: req.user._id}).populate("userId");
+    //  const books= await BookSchema.find({userId: req.user._id}).populate("userId");
         const books= await BookSchema.find();
         res.status(200).send({msg: "list of books", books });
+    } catch (error) {
+        res.status(500).send({msg:"could not get books", error})
+
+    }
+}
+
+
+exports.BooksbyUser= async(req,res) =>{
+    try {
+        const books= await BookSchema.find({userId: req.user.id}).populate("userId");
+        // const books= await BookSchema.find();
+        res.status(200).send({msg: "seller books", books });
     } catch (error) {
         res.status(500).send({msg:"could not get books", error})
 
@@ -44,8 +65,8 @@ console.log(BookSchema.name);
 exports.DeleteBook= async(req,res) =>{
     const {id}= req.params
     try {
-        if (req.user.role == "user")
-        {return res.send('can not delete a book' )}
+        // if (req.user.role == "user")
+        // {return res.send('can not delete a book' )}
 
            const  deleted= await  BookSchema.findByIdAndDelete(id)
            res.status(200).send({msg:"Book deleted" , deleted})
@@ -69,15 +90,16 @@ exports.DeleteBook= async(req,res) =>{
 
     
 
-    exports.searchBook = async  (req,res)=>{
-        try {
-            const searched= await   BookSchema.find({ $and: [{ name: { $regex: '.*' + req.body.name + '.*' } }, { Genre: { $regex: '.*' + req.body.Genre + '.*' } }] })
+exports.searchBook = async  (req,res)=>{
+    try {
+        const searched= await   BookSchema.find({ $and: [{ name: { $regex: '.*' + req.body.name + '.*' } }, 
+        { Genre: { $regex: '.*' + req.body.Genre + '.*' } }] })
 
-            res.status(200).send({msg:"book searched" , searched})
-        } catch (error) {
-            res.status(500).send("could not searche book")
-        }
+        res.status(200).send({msg:"book searched" , searched})
+    } catch (error) {
+        res.status(500).send("could not searche book")
     }
+}
 
 
 
