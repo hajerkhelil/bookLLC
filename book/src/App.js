@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React,{useContext} from "react";
+import { Routes, Route } from "react-router-dom";
+import SignUp from './components/signUp/SignUp';
 
 function App() {
+
+  const [userData, setUserData] = React.useState({ token: undefined, user: undefined });
+  const userDataC = React.useMemo(() => ({ userData, setUserData }, [userData, setUserData]))
+
+  // console.log("userData",userData);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+<useContext.provider value={userDataC}>
+<Routes>
+<Route exact path='/register' component={SignUp} />
+</Routes>
+</useContext.provider>
     </div>
   );
+
 }
 
 export default App;
