@@ -1,25 +1,36 @@
+import { Router,Route, Routes } from 'react-router-dom';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Profile from './components/Profile';
+import Navbare from './components/Navbare';
+import Home from './components/home/Home';
+import Addbook from './components/seller/Addbook';
+import Editbook from './components/seller/Editbook';
 
-import React,{useContext} from "react";
-import { Routes, Route } from "react-router-dom";
-import SignUp from './components/signUp/SignUp';
 
 function App() {
+	return (
+		<div>
+			
+			<Navbare/>
 
-  const [userData, setUserData] = React.useState({ token: undefined, user: undefined });
-  const userDataC = React.useMemo(() => ({ userData, setUserData }, [userData, setUserData]))
+			<Routes>
+				<Route path='/signup' element={<Signup/>}></Route>
+				<Route path='/login' element={<Login />}></Route>
+				<Route path='/profile' element={<Profile />}></Route>
 
-  // console.log("userData",userData);
+				{/* <Route path='/' element={<Home />}></Route> */}
 
-  return (
-    <div >
-<useContext.provider value={userDataC}>
-<Routes>
-<Route exact path='/register' component={SignUp} />
-</Routes>
-</useContext.provider>
-    </div>
-  );
+				<Route path='/Addbook' element={<Addbook />}></Route>
 
+				{/* still */}
+				<Route path='/Editbook' element={<Editbook />}></Route>  
+
+
+
+			</Routes>
+		</div>
+	);
 }
 
 export default App;

@@ -1,0 +1,21 @@
+
+
+.tableMargin {
+    margin-right: 80px;
+    margin-left: 80px;
+    margin-top: 120px;
+}
+
+.tableTeam {
+    border: solid 0.1ch !important;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: grid;
+    flex-direction: row;
+    flex: 1;
+}
+
+
+.img{
+    width: 20px;
+}

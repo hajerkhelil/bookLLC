@@ -43,7 +43,6 @@ exports.BooksbyUser= async(req,res) =>{
         res.status(200).send({msg: "seller books", books });
     } catch (error) {
         res.status(500).send({msg:"could not get books", error})
-
     }
 }
 

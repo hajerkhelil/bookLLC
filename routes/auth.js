@@ -3,7 +3,6 @@
 const express= require("express");
 const {isAuth} = require('../middlewares/isAuth')
 
-
 const { RegisterValidation, Validation, LoginValidation } = require("../middlewares/Register")
 const { Register, Login, UpdateUser, updatePassword, BanUser } = require("../controllers/auth")
 const {AllUsers}= require("../controllers/auth")
