@@ -1,11 +1,11 @@
-
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { editbook } from '../../redux/actions/bookactions';
 
 const Editbook = () => {
+
 	const [bookname, setbookname] = useState('');
 	const [authorname, setauthorname] = useState('');
 	const [description, setdescription] = useState('');
@@ -14,6 +14,13 @@ const Editbook = () => {
 	const [image, setimage] = useState('');
 
 	const dispatch = useDispatch();
+
+	const book = useSelector((state) => state.bookReducer.book);
+
+
+    const updatebook = ()=>{
+        dispatch(editbook(book._id, editbook  )) ;
+        }
 
 	return (
 		<div>
@@ -62,24 +69,8 @@ const Editbook = () => {
 					/>
 				</Form.Group>
 
-				<Button
-					variant='info'
-					onClick={(e) => {
-						e.preventDefault();
-						dispatch(
-							editbook({
-								images: image,
-								Genre: genre,
-								price,
-								description,
-								author: authorname,
-								name: bookname,
-								qty: 0,
-							})
-						);
-					}}
-				>
-					save changes
+				<Button variant='info' onClick={updatebook}>
+					edit changes
 				</Button>
 			</>
 		</div>
