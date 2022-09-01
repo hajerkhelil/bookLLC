@@ -1,5 +1,3 @@
-
-
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editbook } from '../../redux/actions/bookactions';
@@ -17,7 +15,6 @@ function Edit() {
 
 	console.log('book', book);
 
-
 	const [editedname, setEditedname] = useState(book.name);
 	const [editedimages, setEditedimages] = useState(book.images);
 	const [editedauthor, setEditedauthor] = useState(book.author);
@@ -25,11 +22,19 @@ function Edit() {
 	const [editedGenre, setEditedGenre] = useState(book.Genre);
 	const [editedprice, setEditedprice] = useState(book.price);
 
-
 	const handleClick = () => {
-		dispatch(editbook(id, editedname,editedimages,editedauthor,editeddescription,editedGenre,editedprice));
+		dispatch(
+			editbook(
+				id,
+				editedname,
+				editedimages,
+				editedauthor,
+				editeddescription,
+				editedGenre,
+				editedprice
+			)
+		);
 	};
-
 
 	// console.log("/*************************/")
 	// if (book === undefined) {
@@ -94,7 +99,7 @@ function Edit() {
 
 			<Button variant='info' onClick={handleClick}>
 				edit changes
-			</Button> 
+			</Button>
 		</>
 	);
 }

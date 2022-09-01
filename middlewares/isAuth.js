@@ -13,6 +13,7 @@ exports.isAuth= async (req,res, next) => {
 
         var decoded= jwt.verify(token, process.env.SecretOrKey)
         const user= await UserSchema.findById(decoded.id)
+        console.log(user);
         req.user=user
         next()
 

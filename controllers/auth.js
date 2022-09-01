@@ -37,7 +37,7 @@ exports.Login= async (req,res)=>{
     try {
         const user= await UserSchema.findOne({email})
 
-        if (user.banned == true)  
+        if (user.banned === true)  
         {return  res.status(400).send({msg: 'user banned'})}
         
         if (!user)
@@ -93,15 +93,15 @@ exports.updatePassword = async (req, res) => {
     const {password}= req.body
     try {
         const tokenData = await jwt.verify(req.params.token, process.env.SecretOrKey);
-        console.log(tokenData);
-        console.log("tokenData.id ",tokenData.id  );
+        // console.log(tokenData);
+        // console.log("tokenData.id ",tokenData.id  );
         const userdata = await UserSchema.findOne({ _id: tokenData.id }).exec();
-        console.log("userdata", userdata)
+        // console.log("userdata", userdata)
         if (userdata != null) {
             saltRounds = await bcrypt.genSalt(10);
             hasdhedPassword = await bcrypt.hash(password, saltRounds);
             UserSchema.findOneAndUpdate({ _id: userdata.id }, { $set: { password: hasdhedPassword } }).then(data => {
-                console.log("data.name",data.name);
+                // console.log("data.name",data.name);
                 res.status(res.statusCode).json({
                     message: data.name + " password was  updated"
                 })
@@ -134,7 +134,8 @@ exports.UpdateUser = async (req,res) => {
 exports.BanUser = async (req, res) => {
     const {id}= req.params
     try {
-    if ( req.user.role == "user")
+        console.log(req.user);
+    if ( req.user.role === "user")
     {return res.status(res.statusCode).send('you can not ban a user')}
 
         const banned= await UserSchema.findByIdAndUpdate(id,{$set: {...req.body}})

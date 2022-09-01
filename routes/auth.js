@@ -19,11 +19,11 @@ AuthRoute.get('/allusers',isAuth, AllUsers)
 
 AuthRoute.get('/delete/:id',isAuth, DeleteUser)
 
-AuthRoute.put('/updateUser/:id', isAuth,  UpdateUser)
+AuthRoute.put('/UpdateUser/:id', isAuth, UpdateUser)
 
-AuthRoute.get('/UpdatePassword/:token',  updatePassword)
+AuthRoute.put('/UpdatePassword/:token', updatePassword)
 
-AuthRoute.get('/BanUser/:id',isAuth,  BanUser) // admin
+AuthRoute.put('/BanUser/:id',isAuth,  BanUser) // admin
 
 
 module.exports = AuthRoute;
