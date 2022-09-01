@@ -15,8 +15,7 @@ function Edit() {
 	const dispatch = useDispatch();
 
 	console.log('book', book);
-	console.log('book', book.name);
-	console.log('id', id);
+
 
 	const [editedname, setEditedname] = useState(book.name);
 	const [editedimages, setEditedimages] = useState(book.images);

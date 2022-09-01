@@ -6,6 +6,8 @@ import Navbare from './components/Navbare';
 import Home from './components/home/Home';
 import Addbook from './components/seller/Addbook';
 import Editt from './components/seller/Editt';
+import AdminRoute from './components/admin/AdminRoute';
+import UserList from './components/admin/UserList';
 
 function App() {
 	return (
@@ -17,8 +19,16 @@ function App() {
 
 				<Route path='/profile' element={<Profile />}></Route>
 				<Route path='/Addbook' element={<Addbook />}></Route>
-
 				<Route path='/editt/:id' element={<Editt />}></Route>
+
+				<Route
+					path='/AdminProfile'
+					element={
+						<AdminRoute>
+							<UserList />
+						</AdminRoute>
+					}
+				></Route> 
 			</Routes>
 		</div>
 	);

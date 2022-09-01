@@ -66,7 +66,8 @@ export const deletebook = (id) => async (dispatch) => {
 	};
 	try {
 		const res = await axios.get(
-			`http://localhost:3000/api/book/DeleteBook/${id}`
+			`http://localhost:3000/api/book/DeleteBook/${id}`,
+			config
 		);
 		dispatch(getbooks());
 	} catch (error) {
