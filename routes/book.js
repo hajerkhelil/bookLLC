@@ -11,7 +11,7 @@ BookRoute.get("/BooksbyUser",isAuth, BooksbyUser)
 
 BookRoute.get("/OneBook/:id", OneBook)
 
-BookRoute.delete("/DeleteBook/:id",isAuth, DeleteBook) // admin 
+BookRoute.delete("/DeleteBook/:id",isAuth, DeleteBook) 
 
 BookRoute.put("/UpdateBook/:id",isAuth, UpdateBook)
 

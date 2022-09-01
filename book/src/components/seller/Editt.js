@@ -1,4 +1,5 @@
-// for testing
+
+
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editbook } from '../../redux/actions/bookactions';
@@ -28,6 +29,12 @@ function Edit() {
 	const handleClick = () => {
 		dispatch(editbook(id, editedname,editedimages,editedauthor,editeddescription,editedGenre,editedprice));
 	};
+
+
+	// console.log("/*************************/")
+	// if (book === undefined) {
+	//   return (<div>Loading</div>)
+	// }
 
 	return (
 		<>

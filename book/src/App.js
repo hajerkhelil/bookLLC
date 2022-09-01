@@ -28,7 +28,7 @@ function App() {
 							<UserList />
 						</AdminRoute>
 					}
-				></Route> 
+				></Route>
 			</Routes>
 		</div>
 	);

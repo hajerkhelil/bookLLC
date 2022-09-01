@@ -15,19 +15,28 @@ function Profile() {
 
 	const user = useSelector((state) => state.authReducer.user);
 
-	useEffect(() => {
-		dispatch(getcurrent());
-	}, [user]);
+	 useEffect(() => {
+	 	dispatch(getcurrent());
+	 }, []);
 
 	useEffect(() => {
 		dispatch(getbooksbyuser());
 	}, []);
 
 	const books = useSelector((state) => state.bookReducer.books);
+	const book = useSelector((state) => state.bookReducer.book);
+
 
 	const handleClickadd = () => {
 		navigate('/Addbook');
 	};
+
+
+	const handleClickedit = (id) => {
+		navigate('/editt/'+ id )
+	};
+
+	console.log(books);
 
 	return (
 		<div>
@@ -47,7 +56,7 @@ function Profile() {
 						<table>
 							<tr>
 								<td>
-									<img class='edit' src={edit} alt='edit' height='20' />
+									<img class='edit' src={edit} alt='edit' height='20' onClick={() => handleClickedit(book._id)}/>
 									<img
 										class='delete'
 										src={del}

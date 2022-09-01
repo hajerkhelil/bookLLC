@@ -65,7 +65,7 @@ export const deletebook = (id) => async (dispatch) => {
 		},
 	};
 	try {
-		const res = await axios.get(
+		const res = await axios.delete(
 			`http://localhost:3000/api/book/DeleteBook/${id}`,
 			config
 		);
