@@ -7,8 +7,7 @@ import add from './Icons/addicon.png';
 import del from './Icons/deletered.png';
 import style from './Profile.css';
 import { Navigate, useNavigate } from 'react-router-dom';
-import Editt from './seller/Editt'
-
+import Editt from './seller/Editt';
 
 function Profile() {
 	const dispatch = useDispatch();
@@ -30,8 +29,6 @@ function Profile() {
 		navigate('/Addbook');
 	};
 
-
-
 	return (
 		<div>
 			<h1> hello {user && user.email}</h1>
@@ -50,8 +47,14 @@ function Profile() {
 						<table>
 							<tr>
 								<td>
-									<img class='edit' src={edit} alt='edit' height='20'/>
-									<img class='delete' src={del} alt='delete' height='20'  onClick={()=> dispatch(deletebook(book._id) )  }/>
+									<img class='edit' src={edit} alt='edit' height='20' />
+									<img
+										class='delete'
+										src={del}
+										alt='delete'
+										height='20'
+										onClick={() => dispatch(deletebook(book._id))}
+									/>
 								</td>
 
 								<td class='img'>
