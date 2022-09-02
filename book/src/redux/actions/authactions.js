@@ -124,9 +124,10 @@ export const editpassword = (id, updatedpassword) => async (dispatch) => {
 			authorization: localStorage.getItem('token'),
 		},
 	};
+	console.log(config.headers.authorization);
 	try {
 		const res = await axios.put(
-			`http://localhost:3000/api/authe/UpdatePassword/${id}`, // token
+			`http://localhost:3000/api/authe/UpdatePassword/${config.headers.authorization}`, // token
 			{
 				password: updatedpassword,
 			},

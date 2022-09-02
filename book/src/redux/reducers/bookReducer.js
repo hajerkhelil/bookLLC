@@ -4,6 +4,7 @@ import {
 	EDIT_BOOK,
 	GET_BOOK,
 	GET_BOOKS,
+
 } from '../types/booktypes';
 import { ADDTOCART, DECREMENT, INCREMENT } from '../types/paniertypes';
 
@@ -12,6 +13,7 @@ const initialState = {
 	book: {},
 	cart: [],
 	count: 1,
+
 };
 
 const bookReducer = (state = initialState, { type, payload }) => {
@@ -56,7 +58,6 @@ const bookReducer = (state = initialState, { type, payload }) => {
 				return { ...state, cart: [...state.cart, { ...payload, qty: 1 }] };
 			}
 
-			
 		case INCREMENT:
 			const cart = JSON.parse(localStorage['cart']);
 			const newcart = cart.map((el) =>
@@ -65,7 +66,6 @@ const bookReducer = (state = initialState, { type, payload }) => {
 			localStorage.setItem('cart', JSON.stringify(newcart));
 			return { ...state, cart: newcart };
 
-
 		case DECREMENT:
 			const cartt = JSON.parse(localStorage['cart']);
 			const newcartt = cartt.map((el) =>
@@ -73,6 +73,8 @@ const bookReducer = (state = initialState, { type, payload }) => {
 			);
 			localStorage.setItem('cart', JSON.stringify(newcartt));
 			return { ...state, cartt: newcartt };
+
+
 
 		default:
 			return state;

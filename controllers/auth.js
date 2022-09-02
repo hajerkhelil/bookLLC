@@ -93,8 +93,8 @@ exports.updatePassword = async (req, res) => {
     const {password}= req.body
     try {
         const tokenData = await jwt.verify(req.params.token, process.env.SecretOrKey);
-        // console.log(tokenData);
-        // console.log("tokenData.id ",tokenData.id  );
+        console.log(tokenData);
+        console.log("tokenData.id ",tokenData.id  );
         const userdata = await UserSchema.findOne({ _id: tokenData.id }).exec();
         // console.log("userdata", userdata)
         if (userdata != null) {
@@ -110,10 +110,15 @@ exports.updatePassword = async (req, res) => {
                     error: true,
                     message: error.message,
                 })
+                console.log(error);
             })
         }
     } catch (error) {
-        res.status(500).send("password was not updated")
+        // res.status(500).send("password was not updated")
+        res.status(res.statusCode).json({
+            error: true,
+            message: error.message,
+        })
     }
 }
 
