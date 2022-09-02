@@ -3,13 +3,12 @@ const mongoose = require('mongoose');
 
 exports.AddReview = async (req, res) => {
 	const { rating } = req.body;
-    const {id}= req.params
 
 
 	try {
 		const newreview = new ReviewSchema({
 			rating,
-            rateduser:id,
+            rateduser,
 			userId: req.user.id,
 		});
 		await newreview.save();
