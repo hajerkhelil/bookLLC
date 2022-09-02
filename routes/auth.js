@@ -4,7 +4,7 @@ const express= require("express");
 const {isAuth} = require('../middlewares/isAuth')
 
 const { RegisterValidation, Validation, LoginValidation } = require("../middlewares/Register")
-const { Register, Login, UpdateUser, updatePassword, BanUser } = require("../controllers/auth")
+const { Register, Login, UpdateUser, updatePassword, BanUser, OneUser } = require("../controllers/auth")
 const {AllUsers}= require("../controllers/auth")
 const {DeleteUser}= require("../controllers/auth")
 const AuthRoute= express.Router()
@@ -24,6 +24,9 @@ AuthRoute.put('/UpdateUser/:id', isAuth, UpdateUser)
 AuthRoute.put('/UpdatePassword/:token', updatePassword)
 
 AuthRoute.put('/BanUser/:id',isAuth,  BanUser) // admin
+
+AuthRoute.get('/OneUser/:id',  OneUser)
+
 
 
 module.exports = AuthRoute;

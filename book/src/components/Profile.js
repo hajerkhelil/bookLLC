@@ -38,7 +38,6 @@ function Profile() {
 
 	// console.log(books);
 
-
 	// const handleClickedituser = (id) => {
 	// 	navigate('/editprofile/' + id);
 	// };
@@ -69,7 +68,8 @@ function Profile() {
 				onClick={() => {
 					handleClickadd();
 				}}
-			/><p>Add a Book</p>
+			/>
+			<p>Add a Book</p>
 
 			<div class='tableMargin'>
 				{books.map((book) => (

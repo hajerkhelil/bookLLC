@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/actions/authactions';
 
 function Login() {
-  const [name, setname] = useState('');
+	const [name, setname] = useState('');
 	const [email, setemail] = useState('');
 	const [password, setpassword] = useState('');
 

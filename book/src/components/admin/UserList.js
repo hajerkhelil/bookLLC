@@ -5,6 +5,7 @@ import AdminProfile from './AdminProfile';
 function UserList() {
 	const users = useSelector((state) => state.authReducer.users);
 	console.log('users', users);
+	
 	return (
 		<div>
 			{users && users.map((user) => <AdminProfile user={user}></AdminProfile>)}

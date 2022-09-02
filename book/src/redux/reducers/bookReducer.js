@@ -4,7 +4,6 @@ import {
 	EDIT_BOOK,
 	GET_BOOK,
 	GET_BOOKS,
-
 } from '../types/booktypes';
 import { ADDTOCART, DECREMENT, INCREMENT } from '../types/paniertypes';
 
@@ -13,7 +12,6 @@ const initialState = {
 	book: {},
 	cart: [],
 	count: 1,
-
 };
 
 const bookReducer = (state = initialState, { type, payload }) => {
@@ -73,8 +71,6 @@ const bookReducer = (state = initialState, { type, payload }) => {
 			);
 			localStorage.setItem('cart', JSON.stringify(newcartt));
 			return { ...state, cartt: newcartt };
-
-
 
 		default:
 			return state;

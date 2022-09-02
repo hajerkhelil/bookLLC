@@ -5,7 +5,6 @@ import { getcurrent, getusers, logout } from '../redux/actions/authactions';
 import { useSelector, useDispatch } from 'react-redux';
 import { getbooks } from '../redux/actions/bookactions';
 
-
 function Navbare() {
 	const auth = useSelector((state) => state.authReducer.auth);
 	const dispatch = useDispatch();
@@ -49,6 +48,16 @@ function Navbare() {
 					<Nav.Item as='li'>
 						<Nav.Link as={Link} to='/panier' eventKey='link-1'>
 							Panier
+						</Nav.Link>
+					</Nav.Item>
+
+					<Nav.Item as='li'>
+						<Nav.Link
+							as={Link}
+							to='/SeeUsers'
+							onClick={() => dispatch(getusers())}
+						>
+							Users
 						</Nav.Link>
 					</Nav.Item>
 				</Nav>

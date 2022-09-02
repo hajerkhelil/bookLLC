@@ -8,7 +8,7 @@ export default function BookDetails() {
 	const book = useSelector((state) => state.bookReducer.book);
 
 	const cart = useSelector((state) => state.bookReducer.cart);
-	const find = cart && cart.find((el) => el._id == book._id);
+	const find = cart && cart.find((el) => el._id === book._id);
 	return (
 		<div>
 			<img src={book.images} />

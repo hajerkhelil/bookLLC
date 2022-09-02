@@ -155,4 +155,13 @@ exports.BanUser = async (req, res) => {
 }
 
 
-
+//
+exports.OneUser = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const founduser = await UserSchema.findById(id);
+		res.status(200).send({ msg: 'user found', founduser });
+	} catch (error) {
+		res.status(500).send('could not get user');
+	}
+};

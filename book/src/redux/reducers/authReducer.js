@@ -9,6 +9,7 @@ import {
 	EDIT_USER,
 	BAN_USER,
 	EDIT_PASSWORD,
+	GET_USER,
 } from './../types/authtypes';
 
 const initialState = {
@@ -57,6 +58,9 @@ const authReducer = (state = initialState, { type, payload }) => {
 					el._id !== payload._id ? el : { ...el, user: payload.newuser }
 				),
 			};
+
+		case GET_USER:
+			return { ...state, user: payload.founduser };
 
 		default:
 			return state;

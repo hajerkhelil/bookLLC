@@ -6,6 +6,7 @@ import {
 	GET_CURRENT,
 	CLEARERRORS,
 	GET_USERS,
+	GET_USER,
 } from './../types/authtypes';
 
 import axios from 'axios';
@@ -158,6 +159,16 @@ export const banuser = (id, updatedbanned) => async (dispatch) => {
 		);
 		console.log(res.data);
 		dispatch(getusers());
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+//
+export const getuser = (id) => async (dispatch) => {
+	try {
+		const res = await axios.get(`http://localhost:3000/api/authe/OneUser/${id}`);
+		dispatch({ type: GET_USER, payload: res.data });
 	} catch (error) {
 		console.log(error);
 	}

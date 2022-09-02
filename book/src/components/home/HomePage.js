@@ -6,11 +6,11 @@ import Search from './Search';
 function HomePage() {
 	const [search, setSearch] = useState('');
 
+	console.log("set", setSearch);
 	return (
 		<div>
-
-			<Search setSearch={setSearch} />
-			<BookList search={search} />
+			<Search  setSearch={setSearch} />
+			<BookList  search={search} />
 		</div>
 	);
 }

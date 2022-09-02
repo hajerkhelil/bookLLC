@@ -14,6 +14,9 @@ import HomePage from './components/home/HomePage';
 import BookDetails from './components/home/BookDetails';
 import PrivateRoute from './components/PrivateRoute';
 import Panier from './components/Panier';
+import ListUsers from './components/ListUsers';
+import Profiles from './components/Profiles';
+import SeeUsers from './components/SeeUsers';
 
 function App() {
 	return (
@@ -40,8 +43,11 @@ function App() {
 						</PrivateRoute>
 					}
 				></Route> */}
-
 				<Route path='/panier' element={<Panier />}></Route>
+
+				<Route path='/SeeUsers' element={<SeeUsers />}></Route>
+				{/* <Route path='/ListUsers' element={<ListUsers />}></Route> */}
+				<Route path='/profiles' element={<Profiles />}></Route>
 
 				<Route
 					path='/AdminProfile'
