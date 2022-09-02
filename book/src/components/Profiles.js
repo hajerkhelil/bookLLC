@@ -11,6 +11,7 @@ function Profiles() {
 	const user = useSelector((state) => state.authReducer.user);
 	console.log('user profile', user);
 
+	const [review, setreview] = useState('');
 
 	return (
 		<div>

@@ -1,17 +1,13 @@
+const mongoose = require('mongoose');
 
-const  mongoose= require ('mongoose')
+const MsgSchema = new mongoose.Schema({
+	// _id:mongoose.Schema.Types.ObjectId,
 
-const MsgSchema= new mongoose.Schema({
+	sender: { type: mongoose.Schema.Types.ObjectId },
+	receiver: { type: mongoose.Schema.Types.ObjectId },
+	content: { type: String },
 
-    // _id:mongoose.Schema.Types.ObjectId,
+	userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+});
 
-    sender:  { type: mongoose.Schema.Types.ObjectId},
-    receiver: { type: mongoose.Schema.Types.ObjectId}, 
-    content: {type: String},
-
-    userId: { type: mongoose.Schema.Types.ObjectId, ref:'User'}, 
-
-
-})
-
-module.exports= mongoose.model('msg', MsgSchema)
+module.exports = mongoose.model('msg', MsgSchema);

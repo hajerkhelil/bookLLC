@@ -6,7 +6,6 @@ import edit from './Icons/editorang.png';
 import Profiles from './Profiles';
 import { getuser, getusers } from '../redux/actions/authactions';
 import { getbooks, getbooksbyuser } from '../redux/actions/bookactions';
-import ReactStars from 'react-rating-stars-component';
 
 function OtherProfile({ user }) {
 	const navigate = useNavigate();
@@ -37,18 +36,7 @@ function OtherProfile({ user }) {
 							navigate('/profiles');
 						}}
 					/>
-					{/* <ReactStars
-						count={5}
-						onChange={rating}
-						size={24}
-						activeColor='#ffd700'
-					/> */}
 
-					<input
-						type='text'
-						onChange={(e) => setRate(e.target.value)}
-						value={rate}
-					/>
 				</Card.Body>
 			</Card>
 		</div>

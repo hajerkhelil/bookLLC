@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import BookCard from './BookCard';
 
-function BookList({ search }) {
+function BookList() {
 	const books = useSelector((state) => state.bookReducer.books);
-	console.log('books', books);
+	// console.log('books', books);
+	const [search, setSearch] = useState('');
 
 	const searchbook = books.filter((book) => {
 		return book.name.toLowerCase().includes(search.input);
 	});
+	console.log('search', searchbook);
 
-	console.log("search", searchbook);
 	return (
 		<div>
 			{searchbook.map((book) => (
